@@ -1,21 +1,27 @@
-const imagemin = require('imagemin');
-const webp = require('imagemin-webp');
-const path = require('path');
+import imagemin from 'imagemin';
+import imageminWebp from 'imagemin-webp';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 (async () => {
-  const files = await imagemin(['public/images/*.{jpg,png}'], {
-    destination: 'public/images/optimized',
-    plugins: [
-      webp({
-        quality: 75,
-        resize: {
-          width: 1920,
-          height: 1080,
-          fit: 'inside'
-        }
-      })
-    ]
-  });
+  try {
+    const files = await imagemin(['public/images/*.{jpg,png}'], {
+      destination: 'public/images/optimized',
+      plugins: [
+        imageminWebp({
+          quality: 75
+        })
+      ]
+    });
 
-  console.log('Images optimized:', files.map(f => path.basename(f.destinationPath)).join('\n'));
+    console.log('Images optimized successfully!');
+    console.log('Optimized files:', files.map(f => path.basename(f.destinationPath)).join('\n'));
+  } catch (error) {
+    console.error('Error optimizing images:', error);
+    process.exit(1);
+  }
 })();
