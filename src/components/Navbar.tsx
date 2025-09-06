@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { FiHome, FiUser, FiCode, FiMail, FiGithub, FiLinkedin, FiTwitter, FiMenu, FiX } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext';
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
     { Icon: FiTwitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
   ];
 
-  const navbarVariants = {
+  const navbarVariants: Variants = {
     hidden: { 
       y: -100, 
       opacity: 0,
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const menuVariants = {
+  const menuVariants: Variants = {
     closed: { 
       opacity: 0,
       x: "100%",
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     closed: { opacity: 0, x: 20 },
     open: (i: number) => ({
       opacity: 1,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion';
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -15,34 +15,85 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   direction = 'up'
 }) => {
   const getDirectionVariants = (): Variants => {
-    const baseVariants = {
-      hidden: { opacity: 0 },
+    const transition: Transition = {
+      duration: 0.6,
+      ease: [0.43, 0.13, 0.23, 0.96]
+    };
+
+    const baseVariants: Variants = {
+      hidden: { 
+        opacity: 0,
+        transition
+      },
       visible: {
         opacity: 1,
         transition: {
-          duration: 0.6,
-          ease: [0.6, -0.05, 0.01, 0.99],
+          ...transition,
           delay
         }
       }
     };
 
-    const directionVariants = {
+    const directionVariants: Record<string, Variants> = {
       up: {
-        hidden: { ...baseVariants.hidden, y: 20 },
-        visible: { ...baseVariants.visible, y: 0 }
+        hidden: { 
+          opacity: 0,
+          y: 20,
+          transition
+        },
+        visible: { 
+          opacity: 1,
+          y: 0,
+          transition: {
+            ...transition,
+            delay
+          }
+        }
       },
       down: {
-        hidden: { ...baseVariants.hidden, y: -20 },
-        visible: { ...baseVariants.visible, y: 0 }
+        hidden: { 
+          opacity: 0,
+          y: -20,
+          transition
+        },
+        visible: { 
+          opacity: 1,
+          y: 0,
+          transition: {
+            ...transition,
+            delay
+          }
+        }
       },
       left: {
-        hidden: { ...baseVariants.hidden, x: 20 },
-        visible: { ...baseVariants.visible, x: 0 }
+        hidden: { 
+          opacity: 0,
+          x: 20,
+          transition
+        },
+        visible: { 
+          opacity: 1,
+          x: 0,
+          transition: {
+            ...transition,
+            delay
+          }
+        }
       },
       right: {
-        hidden: { ...baseVariants.hidden, x: -20 },
-        visible: { ...baseVariants.visible, x: 0 }
+        hidden: { 
+          opacity: 0,
+          x: -20,
+          transition
+        },
+        visible: { 
+          opacity: 1,
+          x: 0,
+          transition: {
+            ...transition,
+            delay
+          }
+        }
       }
     };
 

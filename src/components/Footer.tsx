@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart, FiArrowUp } from 'react-icons/fi';
 
@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
     { Icon: FiMail, href: 'mailto:suryasangadi127@gmail.com', label: 'Email' },
   ];
 
-  const footerVariants = {
+  const footerVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,

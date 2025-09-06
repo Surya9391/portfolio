@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants, Transition, TargetAndTransition } from 'framer-motion';
 
 // Debounce function to limit the rate of updates
 const debounce = (func: Function, wait: number) => {
@@ -59,7 +59,8 @@ const CustomCursor: React.FC = () => {
     };
   }, []);
 
-  const variants = {
+  type CustomVariant = Record<string, TargetAndTransition>;
+  const variants: CustomVariant = {
     default: {
       width: 32,
       height: 32,
