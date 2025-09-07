@@ -37,7 +37,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 1,
     title: 'Alpha Trading Platform',
     description: 'Alpha Trading is a Java-based application for analyzing and tracking cryptocurrency trading trends.',
-    image: '/images/project1.png',
+    image: '/images/Project1.png',
     technologies: ['Java', 'CoinGecko API', 'Gemini API', 'MySQL'],
     githubUrl: 'https://github.com/Surya9391/Alpha_Trading_Platform.git',
     liveUrl: '#',
@@ -53,7 +53,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 2,
     title: 'Resortify',
     description: 'Resortify is a smart waste management app that promotes recycling and sustainability through IoT-based monitoring and eco-friendly practices.',
-    image: '/images/project2.png',
+    image: '/images/Project2.png',
     technologies: ['React Native', 'TypeScript', 'Express', 'MongoDB', 'IoT', 'ESP32', 'Arduino', 'Supabase'],
     githubUrl: 'https://github.com/Surya9391/Resortify.git',
     liveUrl: '#',
@@ -69,7 +69,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 3,
     title: 'PowerPredict',
     description: 'PowerPredict is a machine learning project that predicts power consumption based on historical data.',
-    image: '/images/project5.png',
+    image: '/images/Project5.png',
     technologies: ['Python', 'Pandas & NumPy', 'Matplotlib', 'Seaborn'],
     githubUrl: 'https://github.com/Surya9391/Energy-Consumption-Prediction-RF-ML-main.git',
     liveUrl: '#',
@@ -131,3 +131,4 @@ export const ANIMATION_DELAYS = {
   SECTION: 0.2,
   PROJECT: 0.3,
 } as const;
+

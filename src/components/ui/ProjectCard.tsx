@@ -155,3 +155,4 @@ const ProjectCard: React.FC<ProjectCardProps> = memo(({ project, index, onImageE
 ProjectCard.displayName = 'ProjectCard';
 
 export default ProjectCard;
+

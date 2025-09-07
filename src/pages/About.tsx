@@ -242,7 +242,7 @@ const About: React.FC = React.memo(() => {
                     transition={{ duration: 0.2 }}
                   >
                     <motion.img
-                      src="/images/profile.jpg"
+                      src="/images/profile.JPG"
                       alt="Surya Sangadi - Full Stack Developer"
                       className="rounded-xl w-full aspect-[3/4] object-cover object-center border-2 border-[#64ffda]/30"
                       style={{ maxHeight: "500px" }}
