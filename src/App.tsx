@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import ScrollProgress from './components/interactive/ScrollProgress';
 import ParticleBackground from './components/interactive/ParticleBackground';
 import CustomCursor from './components/interactive/CustomCursor';
+import PerformanceMonitor from './components/ui/PerformanceMonitor';
 import { AnimatePresence } from 'framer-motion';
 import CodeLoader from './components/CodeLoader';
 import FloatingActionButton from './components/interactive/FloatingActionButton';
@@ -22,6 +23,17 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Register service worker for caching
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('SW registered: ', registration);
+        })
+        .catch((registrationError) => {
+          console.log('SW registration failed: ', registrationError);
+        });
+    }
+
     // Reduced loading time for better UX
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -65,6 +77,7 @@ const App: React.FC = () => {
             
             <FloatingActionButton />
             <Footer />
+            <PerformanceMonitor />
           </div>
         </Router>
       </ThemeProvider>

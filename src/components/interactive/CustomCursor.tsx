@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { motion, AnimatePresence, Variants, Transition, TargetAndTransition } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence, TargetAndTransition } from 'framer-motion';
 
 // Debounce function to limit the rate of updates
 const debounce = (func: Function, wait: number) => {

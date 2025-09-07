@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
-import { MenuIcon, XIcon, SunIcon, MoonIcon } from '@heroicons/react/solid';
-import { useTheme } from '../../context/ThemeContext';
+import { MenuIcon, XIcon } from '@heroicons/react/solid';
 
 const navigation = [
   { name: 'Home', href: '/', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
@@ -12,7 +11,6 @@ const navigation = [
 ];
 
 const Navbar: React.FC = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -59,30 +57,10 @@ const Navbar: React.FC = () => {
                     {item.name}
                   </Link>
                 ))}
-                <button
-                  onClick={toggleTheme}
-                  className="p-2 rounded-md text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none"
-                >
-                  {isDarkMode ? (
-                    <SunIcon className="h-5 w-5" />
-                  ) : (
-                    <MoonIcon className="h-5 w-5" />
-                  )}
-                </button>
               </div>
 
               {/* Mobile menu button */}
               <div className="flex items-center sm:hidden">
-                <button
-                  onClick={toggleTheme}
-                  className="p-2 mr-2 rounded-md text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none"
-                >
-                  {isDarkMode ? (
-                    <SunIcon className="h-5 w-5" />
-                  ) : (
-                    <MoonIcon className="h-5 w-5" />
-                  )}
-                </button>
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none">
                   {open ? (
                     <XIcon className="block h-6 w-6" />

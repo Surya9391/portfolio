@@ -20,20 +20,6 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       ease: [0.43, 0.13, 0.23, 0.96]
     };
 
-    const baseVariants: Variants = {
-      hidden: { 
-        opacity: 0,
-        transition
-      },
-      visible: {
-        opacity: 1,
-        transition: {
-          ...transition,
-          delay
-        }
-      }
-    };
-
     const directionVariants: Record<string, Variants> = {
       up: {
         hidden: { 

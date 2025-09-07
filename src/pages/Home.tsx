@@ -1,176 +1,36 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import AnimatedSection from '../components/animations/AnimatedSection';
-import AnimatedText from '../components/animations/AnimatedText';
-import HoverCard from '../components/animations/HoverCard';
 import TiltCard from '../components/interactive/TiltCard';
+import ParticleBackground from '../components/interactive/ParticleBackground';
+import { useMousePosition, useCurrentTime } from '../hooks';
+import { FEATURED_PROJECTS, SKILLS, FLOATING_ELEMENTS } from '../constants';
 // Lazy loaded components
-const SkillShowcase = lazy(() => import('../components/interactive/SkillShowcase'));
 const CertificateShowcase = lazy(() => import('../components/interactive/CertificateShowcase'));
 const CodeShowcase = lazy(() => import('../components/interactive/CodeShowcase'));
 const GitHubActivity = lazy(() => import('../components/interactive/GitHubActivity'));
 const Achievements = lazy(() => import('../components/sections/Achievements'));
 
-const Home: React.FC = () => {
+const Home: React.FC = memo(() => {
   const { scrollYProgress } = useScroll();
   const scrollBarWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mousePosition = useMousePosition();
+  const currentTime = useCurrentTime();
   const [isHoveringHero, setIsHoveringHero] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [isVisible, setIsVisible] = useState(false);
 
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 40,
-        y: (e.clientY / window.innerHeight - 0.5) * 40,
-      });
-    };
-
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    // Set visibility after component mounts
-    setTimeout(() => setIsVisible(true), 100);
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      clearInterval(timer);
-    };
-  }, []);
-
-  const featuredProjects = [
-    {
-      id: 1,
-      title: 'Alpha Trading Platform',
-      description: 'Alpha Trading is a Java-based application for analyzing and tracking cryptocurrency trading trends.',
-      image: '/images/project1.png',
-      technologies: ['Java', 'coingecko API','gemini API', 'MySQL'],
-      githubUrl: 'https://github.com/Surya9391/Alpha_Trading_Platform.git',
-      liveUrl: '#',
-      category: 'Java Full Stack',
-      features: ['Real-time updates', 'Authentication', 'Responsive design'],
-      stats: {
-        commits: '1.2k+',
-        stars: '150+',
-        forks: '45+'
-      }
-    },
-    {
-       id: 2,
-      title: 'Resortify',
-      description: 'Resortify is a smart waste management app that promotes recycling and sustainability through IoT-based monitoring and eco-friendly practices.',
-      image: '/images/project2.png',
-      technologies: ['React Native','TypeScript', 'Express', 'MongoDB' ,'IoT' ,'esp32' , 'arduino','Supabase'],
-      githubUrl: 'https://github.com/Surya9391/Resortify.git',
-      category: 'web',
-      features: ['Type safety', 'API integration', 'IOT sensors'],
-      stats: {
-        commits: '800+',
-        stars: '90+',
-        forks: '30+'
-      }
-    },
-    {
-      id: 3,
-      title: 'PowerPredict',
-      description: 'PowerPredict is a machine learning project that predicts power consumption based on historical data.',
-      image: '/images/project5.png',
-      technologies: ['Python', 'Pandas & NumPy', 'Matplotlib', 'Seaborn'],
-      githubUrl: 'https://github.com/Surya9391/Energy-Consumption-Prediction-RF-ML-main.git',
-      category: 'AI/ML',
-      stats: {
-        commits: '800+',
-        stars: '90+',
-        forks: '30+'
-      }
-    },
-  ];
-
-  const skills = [
-    {
-      category: 'Frontend',
-      items: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
-      icon: '🎨',
-      color: 'from-blue-500 to-cyan-500',
-      gradient: 'from-blue-400 via-cyan-400 to-blue-600'
-    },
-    {
-      category: 'Backend',
-      items: ['Java','Node.js', 'Express', 'MongoDB', 'MySQL'],
-      icon: '⚙️',
-      color: 'from-green-500 to-emerald-500',
-      gradient: 'from-green-400 via-emerald-400 to-green-600'
-    },
-    {
-      category: 'Tools & Others',
-      items: ['Git&Github', 'Firebase','IoT','API'],
-      icon: '🛠️',
-      color: 'from-purple-500 to-pink-500',
-      gradient: 'from-purple-400 via-pink-400 to-purple-600'
-    },
-  ];
-
-  const floatingElements = [
-    { icon: '⚛️', delay: 0, duration: 3, size: 'text-4xl' },
-    { icon: '🚀', delay: 0.5, duration: 4, size: 'text-3xl' },
-    { icon: '💻', delay: 1, duration: 3.5, size: 'text-5xl' },
-    { icon: '🎯', delay: 1.5, duration: 4.5, size: 'text-4xl' },
-    { icon: '⚡', delay: 2, duration: 3, size: 'text-3xl' },
-    { icon: '🔥', delay: 2.5, duration: 4, size: 'text-4xl' },
-    { icon: '💎', delay: 3, duration: 3.5, size: 'text-3xl' },
-    { icon: '🌟', delay: 3.5, duration: 4.5, size: 'text-4xl' },
-  ];
-
-  const particles = Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 1,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5,
-  }));
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Particle Background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-[#64ffda] rounded-full opacity-30"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 50 - 25, 0],
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
-
+      <ParticleBackground />
+      
       {/* Floating Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        {floatingElements.map((element, index) => (
+        {FLOATING_ELEMENTS.map((element, index) => (
           <motion.div
             key={index}
             className={`absolute ${element.size} opacity-10`}
@@ -476,7 +336,7 @@ const Home: React.FC = () => {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((skillGroup, index) => (
+            {SKILLS.map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.category}
                 initial={{ opacity: 0, y: 50, scale: 0.8 }}
@@ -515,7 +375,7 @@ const Home: React.FC = () => {
                     {skillGroup.category}
                   </h3>
                   <div className="flex flex-wrap gap-3">
-                    {skillGroup.items.map((skill, skillIndex) => (
+                    {skillGroup.items.map((skill: string, skillIndex: number) => (
                       <motion.span
                         key={skill}
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -566,7 +426,7 @@ const Home: React.FC = () => {
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {featuredProjects.map((project, index) => (
+            {FEATURED_PROJECTS.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -738,6 +598,8 @@ const Home: React.FC = () => {
       />
     </div>
   );
-};
+});
+
+Home.displayName = 'Home';
 
 export default Home; 
