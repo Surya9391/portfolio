@@ -197,16 +197,16 @@ const About: React.FC = React.memo(() => {
                   <span className="text-[#64ffda] font-semibold">About Me</span>
                 </div>
                 
-                <p className="text-lg text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-700 dark:text-gray-400">
                   I'm <span className="text-[#64ffda] font-semibold">Surya Sangadi</span>, an enthusiastic Software Engineer with expertise in MERN Stack, React Native, and Java Full Stack Development. I am passionate about AI & IoT, with hands-on experience in building innovative solutions. I am skilled in problem-solving and developing dynamic applications.
                 </p>
-                <p className="text-lg text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-700 dark:text-gray-400">
                   My approach to development combines technical expertise with a focus
                   on user experience and clean code. I enjoy solving complex problems
                   and learning new technologies to stay at the forefront of web
                   development.
                 </p>
-                <p className="text-lg text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-700 dark:text-gray-400">
                   When I'm not coding, you can find me exploring new technologies,
                   contributing to open-source projects, or sharing my knowledge through
                   technical writing and mentoring.
@@ -290,7 +290,7 @@ const About: React.FC = React.memo(() => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="card bg-white border border-gray-200 dark:bg-white/5 dark:border-white/10 backdrop-blur-lg rounded-xl p-6 shadow-sm dark:shadow-xl hover:shadow-md dark:hover:shadow-2xl transition-all duration-300"
               >
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                   {skillCategory.category}
@@ -330,7 +330,7 @@ const About: React.FC = React.memo(() => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="card bg-white border border-gray-200 dark:bg-white/5 dark:border-white/10 backdrop-blur-lg rounded-xl p-6 shadow-sm dark:shadow-xl hover:shadow-md dark:hover:shadow-2xl transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                   <div>

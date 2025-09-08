@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
                     className={`${
                       location.pathname === item.href
                         ? 'text-primary-600 dark:text-primary-400'
-                        : 'text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400'
+                        : 'text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400'
                     } px-3 py-2 text-sm font-medium transition-colors duration-200`}
                   >
                     {item.name}
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
 
               {/* Mobile menu button */}
               <div className="flex items-center sm:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none">
                   {open ? (
                     <XIcon className="block h-6 w-6" />
                   ) : (
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
                   className={`${
                     location.pathname === item.href
                       ? 'text-primary-600 dark:text-primary-400'
-                      : 'text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400'
+                      : 'text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400'
                   } block px-3 py-2 text-base font-medium transition-colors duration-200`}
                 >
                   {item.name}

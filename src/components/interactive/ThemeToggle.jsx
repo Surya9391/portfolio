@@ -8,7 +8,7 @@ const ThemeToggle = () => {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed bottom-6 right-6 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg z-50"
+      className="fixed bottom-6 right-6 p-3 rounded-full bg-white text-gray-800 shadow-md border border-gray-200 dark:bg-white/10 dark:text-[#64ffda] dark:backdrop-blur-sm dark:border-white/20 z-50"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       initial={{ opacity: 0, y: 20 }}

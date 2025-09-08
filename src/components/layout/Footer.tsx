@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
             <Link to="/" className="text-2xl font-bold text-primary-600">
               Surya Sangadi
             </Link>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-gray-700 dark:text-gray-400">
               A showcase of my work, skills, and experiences in web development.
             </p>
           </div>
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+                  className="text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
                 >
                   About
                 </Link>
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/projects"
-                  className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+                  className="text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
                 >
                   Projects
                 </Link>
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+                  className="text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
                 >
                   Contact
                 </Link>
@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+                  className="text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
                 >
                   <span className="sr-only">{item.name}</span>
                   {item.icon}
@@ -116,10 +116,10 @@ const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
-          <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
+          <p className="text-center text-gray-700 dark:text-gray-400 text-sm">
             © {currentYear} Surya Sangadi. All rights reserved.
           </p>
-          <p className="text-center text-gray-600 dark:text-gray-400 text-xs mt-2">
+          <p className="text-center text-gray-700 dark:text-gray-400 text-xs mt-2">
             Last updated: {formattedTime}
           </p>
         </div>

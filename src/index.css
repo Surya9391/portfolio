@@ -14,6 +14,9 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: clamp(14px, 1.2vw + 0.5rem, 16px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   
   body {
@@ -21,6 +24,8 @@
     position: relative;
     background-color: #fff;
     color: #1a202c; /* Equivalent of gray-900 */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   .dark body {
@@ -28,7 +33,7 @@
     color: #e0e1dd;
   }
 
-  body::before {
+  .dark body::before {
     content: '';
     position: fixed;
     inset: 0;
@@ -66,6 +71,27 @@
 }
 
 /* Custom styles */
+/* Mobile responsiveness helpers */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a,
+button {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dark a,
+.dark button {
+  -webkit-tap-highlight-color: rgba(224, 225, 221, 0.15);
+}
 .bg-grid-pattern {
   background-image: linear-gradient(to right, rgba(13, 27, 42, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(13, 27, 42, 0.1) 1px, transparent 1px);
@@ -80,6 +106,17 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom scrollbar */
@@ -128,6 +165,15 @@ html {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* Larger tap targets on touch (coarse) pointers */
+@media (pointer: coarse) {
+  .btn {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    min-height: 44px;
+  }
 }
 
 /* Glass effect */
@@ -344,4 +390,93 @@ html {
 /* Dark mode support for loader */
 .dark .loading-container {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+/* Safe-area utilities for devices with notches */
+@layer utilities {
+  .safe-pt { padding-top: max(env(safe-area-inset-top), 0px); }
+  .safe-pb { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+  .safe-pl { padding-left: max(env(safe-area-inset-left), 0px); }
+  .safe-pr { padding-right: max(env(safe-area-inset-right), 0px); }
+}
+
+/* Mobile navbar background helpers */
+@layer components {
+  .mobile-nav-bg {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .dark .mobile-nav-bg {
+    background-color: #0d1b2a;
+    border-bottom-color: rgba(224, 225, 221, 0.12);
+  }
+}
+
+/* Apply solid background to common nav containers on small screens */
+@media (max-width: 640px) {
+  header,
+  .navbar,
+  .menu-bar,
+  .site-nav {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .dark header,
+  .dark .navbar,
+  .dark .menu-bar,
+  .dark .site-nav {
+    background-color: #0d1b2a;
+    border-bottom-color: rgba(224, 225, 221, 0.12);
+  }
+}
+
+/* Mobile dropdown menu panel (hidden by default; shown when parent has .is-open) */
+@layer components {
+  .mobile-menu-panel {
+    display: none;
+  }
+
+  .mobile-menu-link {
+    display: block;
+    padding: 0.875rem 1rem; /* large tap targets */
+    color: #0d1b2a;
+  }
+  .mobile-menu-link:hover {
+    background-color: rgba(13, 27, 42, 0.04);
+  }
+  .dark .mobile-menu-link {
+    color: #e0e1dd;
+  }
+  .dark .mobile-menu-link:hover {
+    background-color: rgba(224, 225, 221, 0.08);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Place the panel under the nav. Ensure the nav container has position: relative */
+  .mobile-nav {
+    position: relative;
+  }
+  .mobile-nav .mobile-menu-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: none;
+    box-shadow: 0 10px 20px rgba(13, 27, 42, 0.08);
+    overflow: hidden;
+    z-index: 50;
+  }
+  .dark .mobile-nav .mobile-menu-panel {
+    background-color: #0d1b2a;
+    border-color: rgba(224, 225, 221, 0.12);
+    box-shadow: 0 10px 20px rgba(224, 225, 221, 0.06);
+  }
+  .mobile-nav.is-open .mobile-menu-panel {
+    display: block;
+  }
 }
